@@ -2,10 +2,14 @@ import {
     ButtonIcon,
     Container, MenuItem,
 } from './styles';
-import Home from '../../assets/home.png';
-import Shorts from '../../assets/youtube-shorts-logo.png';
+import Home from '../../assets/menu/home.png';
+import HomeFill from '../../assets/menu/home-fill.png';
+import Shorts from '../../assets/menu/shorts.png';
+import SubscriptionsIcon from '../../assets/menu/subscriptions.png'; // Importe o ícone para Assinaturas
+import YouIcon from '../../assets/menu/you.png'; // Importe o ícone para "Você"
+import { useNavigate } from 'react-router-dom';
 
-const icons = [Home, Shorts];
+const icons = [HomeFill, Shorts, SubscriptionsIcon, YouIcon];
 
 const items = [
     { name: 'Home', link: '/' },
@@ -19,12 +23,14 @@ interface IProps {
 }
 
 function Menu({ openMenu }: IProps) {
+    const navigate = useNavigate();
+
     return (
         <Container openMenu={openMenu}>
             {items.map((item, index) => (
                 <div key={index}>
-                    <MenuItem openMenu={openMenu}  key={index}>
-                        <ButtonIcon alt="" src={Home} />
+                    <MenuItem openMenu={openMenu} onClick={() => navigate(item.link)}  key={index}>
+                        <ButtonIcon alt="" src={icons[index]} />
                         <span>{item.name}</span>
                     </MenuItem>
                 </div>

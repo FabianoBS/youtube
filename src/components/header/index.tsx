@@ -11,13 +11,13 @@ import { Container,
     LogoHeader,
     MicButtonContainer
 } from "./styles";
-import HamburguerIcon from "../../assets/hamburger.png";
-import Logo from '../../assets/YouTube-Logo.png';
-import SearchIcon from '../../assets/search.png';
-import MicIcon from '../../assets/microfone-gravador.png';
-import VideoIcon from '../../assets/video.png';
-import NotificationIcon from '../../assets/sino.png';
-import UserPhoto from '../../assets/user-photo.png';
+import HamburguerIcon from "../../assets/header/hamburger.png";
+import Logo from '../../assets/header/YouTube-Logo.png';
+import SearchIcon from '../../assets/header/search.png';
+import MicIcon from '../../assets/header/microfone-gravador.png';
+import VideoIcon from '../../assets/header/video.png';
+import NotificationIcon from '../../assets/header/sino.png';
+import UserPhoto from '../../assets/header/user-photo.png';
 
 interface IProps {
     openMenu: boolean;
@@ -39,10 +39,12 @@ function Header({ openMenu, setOpenMenu }: IProps) {
                         src={Logo}
                         alt=''
                     />
+
+                    <span style={{ fontSize: '10px', alignSelf: 'baseline', marginTop: '8px' }}>
+                        BR
+                    </span>
                 </LogoHeader>
-                <span style={{ fontSize: '10px', alignSelf: 'baseline', marginTop: '8px' }}>
-                    BR
-                </span>
+                
             </LogoContainer>
 
             <SearchContainer>

@@ -9,22 +9,45 @@ export const Container = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+
+    @media (max-widht: 768px) {
+        height: 50px;
+    }
+
+    @media (max-width: 480px) {
+        height: 45px;
+    }
 `;
 
 export const LogoContainer = styled.div`
     height: 100%;
     display: flex;
     align-items: center;
+
+    @media (max-width: 768px) {
+        width: auto;
+        margin-left: -14px;
+    }
     `;
 
 export const LogoHeader = styled.div`
-    height: 100%;
-    width: auto;
+    width: 123px;
+    height: 56px;
     cursor: pointer;
     display: flex;
 
     #img-header {
-    width: 100%;
+        height: auto;
+        
+    @media (max-width: 768px) {
+        width: 80%; /* Ajusta o tamanho do ícone */
+    }
+
+    @media (max-width: 480px) {
+        width: 60%; /* Ajusta o tamanho do ícone */
+    }
     }
 `;
 
@@ -37,6 +60,17 @@ export const ButtonContainer = styled.div<{ margin?: string }>`
 
     :hover {
         background-color: #d3d3d3;
+    }
+
+    @media (max-width: 768px) {
+        width: 35px; /* Reduz o tamanho do botão */
+        height: 35px;
+        margin: 0;
+    }
+
+    @media (max-width: 480px) {
+        width: 25px; /* Reduz ainda mais o tamanho */
+        height: 25px;
     }
 `;
 
@@ -51,12 +85,28 @@ export const ButtonContent = styled.div`
 
 export const ButtonIcon = styled.img`
     width: 20px;
-    border-radius: 0; /* Garante que o ícone não tenha border-radius */
+    border-radius: 0;
+    
+    @media (max-width: 768px) {
+        width: 18px; /* Ajusta o tamanho do ícone */
+    }
+
+    @media (max-width: 480px) {
+        width: 16px; /* Ajuste adicional para telas pequenas */
+    }
 `;
 
 export const SearchContainer = styled.div`
     display: flex;
     height: 40px;
+    
+    @media (max-width: 768px) {
+        height: 35px; /* Ajusta a altura em telas menores */
+    }
+
+    @media (max-width: 480px) {
+        height: 30px; /* Ajuste adicional */
+    }
 `;
 
 export const SearchInputContainer = styled.div`
@@ -67,6 +117,27 @@ export const SearchInputContainer = styled.div`
     display: flex;
     align-items: center;
     padding-left: 16px;
+
+    @media (max-width: 1080px) {
+        width: auto; /* Ajusta a largura do campo de busca */
+    }
+
+    @media (max-width: 890px) {
+        width: auto; /* Ajusta a largura do campo de busca */
+    }
+
+    @media (max-width: 768px) {
+        width: auto; /* Ajusta a largura do campo de busca */
+        height: 35px;
+    }
+
+    @media (max-width: 610px) {
+        width: 30px; /* Ajuste adicional para telas pequenas */
+    }
+
+    @media (max-width: 480px) {
+        height: 30px; /* Ajuste adicional para telas pequenas */
+    }
 `;
 
 export const SearchInput = styled.input`
@@ -75,6 +146,14 @@ export const SearchInput = styled.input`
     outline: none;
     border: none;
     font-size: 16px;
+
+    @media (max-width: 768px) {
+        font-size: 14px; /* Ajusta a fonte em telas menores */
+    }
+
+    @media (max-width: 480px) {
+        font-size: 12px; /* Ajuste adicional para telas pequenas */
+    }
 `;
 
 export const SearchButton = styled.div`
@@ -91,6 +170,16 @@ export const SearchButton = styled.div`
     &:hover {
         background-color: #d3d3d3;
     }
+
+    @media (max-width: 768px) {
+        height: 35px;
+        width: 60px; /* Ajusta a largura em telas menores */
+    }
+
+    @media (max-width: 480px) {
+        height: 30px;
+        width: 50px; /* Ajuste adicional para telas pequenas */
+    }
 `;
 
 export const MicButtonContainer = styled(ButtonContainer)`
@@ -101,6 +190,16 @@ export const MicButtonContainer = styled(ButtonContainer)`
     
     &:hover {
         background-color: #d3d3d3;
+    }
+
+    @media (max-width: 768px) {
+        height: 35px;
+        width: 35px; /* Ajusta o tamanho do botão do microfone */
+    }
+
+    @media (max-width: 480px) {
+        height: 30px;
+        width: 30px; /* Ajuste adicional para telas pequenas */
     }
 `;
 
@@ -115,5 +214,29 @@ export const HeaderButtons = styled.div`
     #user-photo {
         width: 32px;
         border-radius: 50%;
+    }
+
+    @media (max-width: 768px) {
+        padding: 4px; /* Ajusta o padding em telas menores */
+
+        img {
+            width: 20px; /* Reduz o tamanho das imagens */
+        }
+
+        #user-photo {
+            width: 28px; /* Ajusta o tamanho da foto do usuário */
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 4px; /* Ajuste adicional para telas pequenas */
+
+        img {
+            width: 18px; /* Reduz ainda mais o tamanho das imagens */
+        }
+
+        #user-photo {
+            width: 24px; /* Ajusta o tamanho da foto do usuário */
+        }
     }
 `;
