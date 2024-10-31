@@ -1,47 +1,45 @@
 import { Container } from "./styles";
 import { FilterContainer, CategoryContainer, CategoryContent, NextButton } from "./styles";
+import { useState } from "react";
 
 function FilterComponent() {
+    const [selectedCategory, setSelectedCategory] = useState("All");
+
+    const categories = [
+        "All",
+        "Computer programming",
+        "Podcasts",
+        "Gaming",
+        "Music",
+        "Recording",
+        "Live",
+        "Mixes",
+        "Entrepreneurship",
+        "Game shows",
+        "Lo-fi",
+        "Live television",
+    ];
+
+    const handleCategoryClick = (category: string) => {
+        setSelectedCategory(category);
+    };
+
     return (
         <Container>
             <FilterContainer>
                 <CategoryContainer>
-                    {/* <CategoryContent>
-                        All
-                    </CategoryContent>
-                    <CategoryContent>
-                        Computer programming
-                    </CategoryContent>
-                    <CategoryContent>
-                        Podcasts
-                    </CategoryContent>
-                    <CategoryContent>
-                        Gaming
-                    </CategoryContent>
-                    <CategoryContent>
-                        Music
-                    </CategoryContent>
-                    <CategoryContent>
-                        Recording
-                    </CategoryContent>
-                    <CategoryContent>
-                        Live
-                    </CategoryContent>
-                    <CategoryContent>
-                        Mixes
-                    </CategoryContent>
-                    <CategoryContent>
-                        Entrepreneurship
-                    </CategoryContent>
-                    <CategoryContent>
-                        Game shows
-                    </CategoryContent>
-                    <CategoryContent>
-                        Lo-fi
-                    </CategoryContent>
-                    <CategoryContent>
-                        Live television
-                    </CategoryContent> */}
+                    {categories.map((category) => (
+                        <CategoryContent
+                            key={category}
+                            onClick={() => handleCategoryClick(category)}
+                            style={{
+                                backgroundColor: selectedCategory === category ? '#000' : 'rgba(0, 0, 0, 0.05)',
+                                color: selectedCategory === category ? '#fff' : '#000',
+                            }}
+                        >
+                            {category}
+                        </CategoryContent>
+                    ))}
                     
                     <NextButton />
                 </CategoryContainer>
