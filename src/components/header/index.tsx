@@ -1,4 +1,5 @@
-import { Container,
+import {
+    Container,
     LogoContainer,
     ButtonContainer,
     ButtonIcon,
@@ -18,6 +19,9 @@ import MicIcon from '../../assets/header/microfone-gravador.png';
 import VideoIcon from '../../assets/header/video.png';
 import NotificationIcon from '../../assets/header/sino.png';
 import UserPhoto from '../../assets/header/user-photo.png';
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/userContext";
 
 interface IProps {
     openMenu: boolean;
@@ -25,6 +29,10 @@ interface IProps {
 }
 
 function Header({ openMenu, setOpenMenu }: IProps) {
+    const { login } = useContext(UserContext);
+
+    const navigate = useNavigate();
+
     return (
         <Container>
             <LogoContainer>
@@ -74,15 +82,23 @@ function Header({ openMenu, setOpenMenu }: IProps) {
                         <ButtonIcon alt="" src={NotificationIcon} />
                     </ButtonContent>
                 </ButtonContainer>
-                <ButtonContainer margin='0 0 0 10px'>
-                    <ButtonContent>
-                        <img
-                            id="user-photo"
-                            src={UserPhoto}
-                            alt=''
-                        />
-                    </ButtonContent>
-                </ButtonContainer>
+
+                {login ? 
+                    <ButtonContainer margin='0 0 0 10px'>
+                        <ButtonContent>
+                            <img
+                                id="user-photo"
+                                src={UserPhoto}
+                                alt=''
+                            />
+                        </ButtonContent>
+                    </ButtonContainer>
+
+                :
+
+                <button onClick={() => navigate('/login')}>Fazer Login</button>
+                }
+                
             </HeaderButtons>
 
         </Container>
