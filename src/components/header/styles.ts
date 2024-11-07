@@ -42,11 +42,11 @@ export const LogoHeader = styled.div`
         height: auto;
         
     @media (max-width: 768px) {
-        width: 80%; /* Ajusta o tamanho do ícone */
+        width: 80%;
     }
 
     @media (max-width: 480px) {
-        width: 60%; /* Ajusta o tamanho do ícone */
+        width: 60%;
     }
     }
 `;
@@ -58,18 +58,18 @@ export const ButtonContainer = styled.div<{ margin?: string }>`
     cursor: pointer;
     transition: background-color 1s ease;
 
-    :hover {
+    &:hover {
         background-color: #d3d3d3;
     }
 
     @media (max-width: 768px) {
-        width: 35px; /* Reduz o tamanho do botão */
+        width: 35px;
         height: 35px;
         margin: 0;
     }
 
     @media (max-width: 480px) {
-        width: 25px; /* Reduz ainda mais o tamanho */
+        width: 25px;
         height: 25px;
     }
 `;
@@ -88,11 +88,11 @@ export const ButtonIcon = styled.img`
     border-radius: 0;
     
     @media (max-width: 768px) {
-        width: 18px; /* Ajusta o tamanho do ícone */
+        width: 18px;
     }
 
     @media (max-width: 480px) {
-        width: 16px; /* Ajuste adicional para telas pequenas */
+        width: 16px;
     }
 `;
 
@@ -119,24 +119,24 @@ export const SearchInputContainer = styled.div`
     padding-left: 16px;
 
     @media (max-width: 1080px) {
-        width: auto; /* Ajusta a largura do campo de busca */
+        width: auto;
     }
 
     @media (max-width: 890px) {
-        width: auto; /* Ajusta a largura do campo de busca */
+        width: auto;
     }
 
     @media (max-width: 768px) {
-        width: auto; /* Ajusta a largura do campo de busca */
+        width: auto;
         height: 35px;
     }
 
     @media (max-width: 610px) {
-        width: 30px; /* Ajuste adicional para telas pequenas */
+        width: 30px;
     }
 
     @media (max-width: 480px) {
-        height: 30px; /* Ajuste adicional para telas pequenas */
+        height: 30px;
     }
 `;
 
@@ -148,11 +148,11 @@ export const SearchInput = styled.input`
     font-size: 16px;
 
     @media (max-width: 768px) {
-        font-size: 14px; /* Ajusta a fonte em telas menores */
+        font-size: 14px;
     }
 
     @media (max-width: 480px) {
-        font-size: 12px; /* Ajuste adicional para telas pequenas */
+        font-size: 12px;
     }
 `;
 
@@ -173,12 +173,12 @@ export const SearchButton = styled.div`
 
     @media (max-width: 768px) {
         height: 35px;
-        width: 60px; /* Ajusta a largura em telas menores */
+        width: 60px;
     }
 
     @media (max-width: 480px) {
         height: 30px;
-        width: 50px; /* Ajuste adicional para telas pequenas */
+        width: 50px;
     }
 `;
 
@@ -194,12 +194,12 @@ export const MicButtonContainer = styled(ButtonContainer)`
 
     @media (max-width: 768px) {
         height: 35px;
-        width: 35px; /* Ajusta o tamanho do botão do microfone */
+        width: 35px;
     }
 
     @media (max-width: 480px) {
         height: 30px;
-        width: 30px; /* Ajuste adicional para telas pequenas */
+        width: 30px;
     }
 `;
 
@@ -217,26 +217,26 @@ export const HeaderButtons = styled.div`
     }
 
     @media (max-width: 768px) {
-        padding: 4px; /* Ajusta o padding em telas menores */
+        padding: 4px;
 
         img {
-            width: 20px; /* Reduz o tamanho das imagens */
+            width: 20px;
         }
 
         #user-photo {
-            width: 28px; /* Ajusta o tamanho da foto do usuário */
+            width: 28px;
         }
     }
 
     @media (max-width: 480px) {
-        padding: 4px; /* Ajuste adicional para telas pequenas */
+        padding: 4px;
 
         img {
-            width: 18px; /* Reduz ainda mais o tamanho das imagens */
+            width: 18px;
         }
 
         #user-photo {
-            width: 24px; /* Ajusta o tamanho da foto do usuário */
+            width: 24px;
         }
     }
 `;

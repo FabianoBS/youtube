@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState  } from 'react';
+import { createContext, useEffect, useState  } from 'react';
 import api from '../api';
 
 export const UserContext = createContext({} as any);
@@ -21,6 +21,12 @@ export const UserStorage = ({ children }: any) => {
         getUser(token);
     },[token]);
 
+    const logOut = () => {
+        localStorage.removeItem('token');
+        setLogin(false);
+        setUser({});
+    }
+
     const handleLogin = (email: string, password: string) => {
         api.post('/user/sign-in', {email, password}).then(({ data }) => {
             setLogin(true);
@@ -36,7 +42,8 @@ export const UserStorage = ({ children }: any) => {
         <UserContext.Provider value={{
             login,
             user,
-            handleLogin
+            handleLogin,
+            logOut
         }}>
             {children}
         </UserContext.Provider>

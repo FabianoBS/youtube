@@ -29,8 +29,7 @@ interface IProps {
 }
 
 function Header({ openMenu, setOpenMenu }: IProps) {
-    const { login } = useContext(UserContext);
-
+    const { login, logOut } = useContext(UserContext);
     const navigate = useNavigate();
 
     return (
@@ -41,7 +40,7 @@ function Header({ openMenu, setOpenMenu }: IProps) {
                         <ButtonIcon alt="" src={HamburguerIcon} />
                     </ButtonContent>
                 </ButtonContainer>
-                <LogoHeader>
+                <LogoHeader onClick={() => navigate('')}>
                     <img
                         id="img-header"
                         src={Logo}
@@ -92,11 +91,9 @@ function Header({ openMenu, setOpenMenu }: IProps) {
                                 alt=''
                             />
                         </ButtonContent>
+                        <span onClick={() => logOut()}>Sair</span>
                     </ButtonContainer>
-
-                :
-
-                <button onClick={() => navigate('/login')}>Fazer Login</button>
+                : <ButtonContainer onClick={() => navigate('/login')}>Fazer Login</ButtonContainer>
                 }
                 
             </HeaderButtons>
