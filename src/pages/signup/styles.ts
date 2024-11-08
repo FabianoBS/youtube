@@ -82,14 +82,17 @@ export const Button = styled.button<{ primary?: boolean }>`
     width: 100px;
     max-width: 400px;
     padding: 12px;
+
     background-color: ${({ primary }) => (primary ? '#1a73e8' : 'transparent')};  // Transforma em transparente se não for primário
     border: none;
     border-radius: 4px;
     color: ${({ primary }) => (primary ? 'white' : '#1a73e8')}; // Cor branca se primário, azul se não
-    font-size: 14px;
-    cursor: pointer;
     transition: background-color 0.3s;
+    
+    font-size: 14px;
     white-space: nowrap;
+
+    cursor: pointer;
 
     &:hover {
         background-color: ${({ primary }) => (primary ? '#155ab6' : 'transparent')}; // Muda a cor do hover

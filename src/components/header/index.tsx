@@ -1,3 +1,6 @@
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/userContext";
 import {
     Container,
     LogoContainer,
@@ -8,9 +11,10 @@ import {
     SearchInputContainer,
     SearchInput,
     SearchButton,
-    HeaderButtons,
+    LoginButtons,
     LogoHeader,
-    MicButtonContainer
+    MicButtonContainer,
+    LoginButton
 } from "./styles";
 import HamburguerIcon from "../../assets/header/hamburger.png";
 import Logo from '../../assets/header/YouTube-Logo.png';
@@ -19,9 +23,7 @@ import MicIcon from '../../assets/header/microfone-gravador.png';
 import VideoIcon from '../../assets/header/video.png';
 import NotificationIcon from '../../assets/header/sino.png';
 import UserPhoto from '../../assets/header/user-photo.png';
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../../context/userContext";
+import LoginIcon from '../../assets/header/login.png';
 
 interface IProps {
     openMenu: boolean;
@@ -70,13 +72,13 @@ function Header({ openMenu, setOpenMenu }: IProps) {
                     </ButtonContainer>
             </SearchContainer>
 
-            <HeaderButtons>
-                <ButtonContainer margin='0 0 0 10px'>
+            <LoginButtons>
+                <ButtonContainer margin='0 10px 0 0'>
                     <ButtonContent>
                         <ButtonIcon alt="" src={VideoIcon} />
                     </ButtonContent>
                 </ButtonContainer>
-                <ButtonContainer margin='0 0 0 10px'>
+                <ButtonContainer margin='0 10px 0 0'>
                     <ButtonContent>
                         <ButtonIcon alt="" src={NotificationIcon} />
                     </ButtonContent>
@@ -93,10 +95,18 @@ function Header({ openMenu, setOpenMenu }: IProps) {
                         </ButtonContent>
                         <span onClick={() => logOut()}>Sair</span>
                     </ButtonContainer>
-                : <ButtonContainer onClick={() => navigate('/login')}>Fazer Login</ButtonContainer>
+                    :   
+                    <LoginButton onClick={() => navigate('/login')}>
+                        <img
+                            id="login-img"
+                            src={LoginIcon}
+                            alt=''
+                        />
+                        Fazer login
+                    </LoginButton>
                 }
                 
-            </HeaderButtons>
+            </LoginButtons>
 
         </Container>
     )

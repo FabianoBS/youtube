@@ -7,8 +7,7 @@ export const Container = styled.div<{ openMenu: boolean }>`
     grid-template-columns: ${({ openMenu }) => (openMenu ? 'repeat(4, 1fr)' : 'repeat(5, 1fr)')};
     column-gap: 20px;
     row-gap: 50px;
-    padding: 20px;
-    
+    padding: 20px 46px;
 
     @media (max-width: 1200px) {
         grid-template-columns: ${({ openMenu }) => (openMenu ? 'repeat(3, 1fr)' : 'repeat(4, 1fr)')};

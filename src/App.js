@@ -15,24 +15,39 @@ function App() {
   return (
     <UserStorage>
       <BrowserRouter>
-        <div className="App">
-          <Header openMenu={openMenu} setOpenMenu={setOpenMenu} />
-          <div style={{ width: '100%', display: 'flex', height: 'calc(100vh - 56px)' }}>
-            <Menu openMenu={openMenu} />
-            <div style={{ width: '100%', boxSizing: 'border-box', overflowY: 'auto' }}>
-              <Routes>
-                <Route path="/" element={<Home openMenu={openMenu} />} />
-                <Route path="/shorts" element={<Shorts />} />
-                <Route path="/subscriptions" element={<Subscriptions />} />
-                <Route path="/you" element={<You />} />
-                <Route path="/login" element={<Login />} />
-              </Routes>
-            </div>
-          </div>
-        </div>
+      <Routes>
+          {/* Página de login sem header e menu */}
+          <Route path="/login" element={<Login />} />
+          {/* Páginas com header e menu */}
+          <Route
+            path="*"
+            element={
+              <div className="App">
+                <Header openMenu={openMenu} setOpenMenu={setOpenMenu} />
+                <div style={{ width: '100%', display: 'flex', height: 'calc(100vh - 56px)' }}>
+                  <Menu openMenu={openMenu} />
+                  <div style={{ width: '100%', boxSizing: 'border-box', overflowY: 'auto' }}>
+                    <Routes>
+                      <Route path="/" element={<Home openMenu={openMenu} />} />
+                      <Route path="/shorts" element={<Shorts />} />
+                      <Route path="/subscriptions" element={<Subscriptions />} />
+                      <Route path="/you" element={<You />} />
+                    </Routes>
+                  </div>
+                </div>
+              </div>
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </UserStorage>
   );
 }
+
+// fazer a tela de login;
+// dropdown menu user;
+// criar tela e integração para cadastro de usuário;
+// criar tela e integração para cadastro de vídeo;
+// implementação de pesquisa
 
 export default App;

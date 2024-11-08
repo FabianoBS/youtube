@@ -30,16 +30,17 @@ export const LogoContainer = styled.div`
         width: auto;
         margin-left: -14px;
     }
-    `;
+`;
 
 export const LogoHeader = styled.div`
     width: 123px;
     height: 56px;
     cursor: pointer;
     display: flex;
+    align-items: center;
 
     #img-header {
-        height: auto;
+        height: 95%;
         
     @media (max-width: 768px) {
         width: 80%;
@@ -51,12 +52,78 @@ export const LogoHeader = styled.div`
     }
 `;
 
+export const LoginButtons = styled.div`
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+
+    img {
+        width: 24px;
+    }
+
+    #user-photo {
+        width: 32px;
+        border-radius: 50%;
+    }
+
+    @media (max-width: 768px) {
+        padding: 4px;
+
+        img {
+            width: 20px;
+        }
+
+        #user-photo {
+            width: 28px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 4px;
+
+        img {
+            width: 18px;
+        }
+
+        #user-photo {
+            width: 24px;
+        }
+    }
+`;
+
+export const LoginButton = styled(LoginButtons)`
+    width: 124px;
+    padding: 8px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 40px;
+
+    color: #065fd4;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+
+    &:hover {
+        background: #def1ff;
+        border: none;
+    }
+`;
+
 export const ButtonContainer = styled.div<{ margin?: string }>`
     width: 40px;
     height: 40px;
     margin: ${({ margin }) => margin? margin : 0};
+
+    border-radius: 50%;
+    transition: 0.3s;
     cursor: pointer;
-    transition: background-color 1s ease;
 
     &:hover {
         background-color: #d3d3d3;
@@ -80,7 +147,6 @@ export const ButtonContent = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
 `;
 
 export const ButtonIcon = styled.img`
@@ -200,43 +266,5 @@ export const MicButtonContainer = styled(ButtonContainer)`
     @media (max-width: 480px) {
         height: 30px;
         width: 30px;
-    }
-`;
-
-export const HeaderButtons = styled.div`
-    display: flex;
-    padding: 8px;
-
-    img {
-        width: 24px;
-    }
-
-    #user-photo {
-        width: 32px;
-        border-radius: 50%;
-    }
-
-    @media (max-width: 768px) {
-        padding: 4px;
-
-        img {
-            width: 20px;
-        }
-
-        #user-photo {
-            width: 28px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        padding: 4px;
-
-        img {
-            width: 18px;
-        }
-
-        #user-photo {
-            width: 24px;
-        }
     }
 `;
