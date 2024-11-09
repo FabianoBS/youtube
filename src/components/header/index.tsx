@@ -25,12 +25,8 @@ import NotificationIcon from '../../assets/header/sino.png';
 import UserPhoto from '../../assets/header/user-photo.png';
 import LoginIcon from '../../assets/header/login.png';
 
-interface IProps {
-    openMenu: boolean;
-    setOpenMenu: (openMenu: boolean) => void;
-}
 
-function Header({ openMenu, setOpenMenu }: IProps) {
+function Header({ openMenu, setOpenMenu }: { openMenu: boolean, setOpenMenu: React.Dispatch<React.SetStateAction<boolean>> }) {
     const { login, logOut } = useContext(UserContext);
     const navigate = useNavigate();
 

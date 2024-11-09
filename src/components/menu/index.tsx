@@ -20,11 +20,8 @@ const items = [
     { name: 'You', link: '/you' }
 ];
 
-interface IProps {
-    openMenu: boolean;
-}
 
-function Menu({ openMenu }: IProps) {
+function Menu({ openMenu }: { openMenu: boolean }) {
     const navigate = useNavigate();
     const [activeIndex, setActiveIndex] = useState(0);
 

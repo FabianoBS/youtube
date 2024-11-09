@@ -1,31 +1,35 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-    width: 100%;
-`;
+export const Container = styled.div<{ openMenu: boolean }>`
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    `;
 
-export const ImageBanner = styled.img`
-    width: 100%;
-    height: 210px;
+export const ImageBanner = styled.img<{ openMenu: boolean }>`
+    width: ${({ openMenu }) => (openMenu ? '500px' : '382px')};
+    height: ${({ openMenu }) => (openMenu ? '268px' : '210px')};
     object-fit: cover;
     border-radius: 12px;
+    margin-bottom: 10px;
 
     @media (max-width: 768px) {
-        height: 180px; /* Ajusta a altura da imagem em telas menores */
+        height: 180px;
     }
 
     @media (max-width: 480px) {
-        height: 150px; /* Ajuste adicional para telas pequenas */
+        height: 150px;
     }
-    `;
+`;
 
-export const TitleContainer = styled.div`
-    width: 100%;
+export const TitleContainer = styled.div<{ openMenu: boolean }>`
     display: flex;
+    width: auto;
 
     @media (max-width: 768px) {
-        flex-direction: column; /* Altera a direção para coluna em telas menores */
-        align-items: flex-start; /* Alinha o conteúdo à esquerda */
+        flex-direction: column;
+        align-items: flex-start;
     }
 `;
 
@@ -39,18 +43,19 @@ export const ChannelImage = styled.div`
     border-radius: 50%;
 
     @media (max-width: 768px) {
-        min-width: 28px; /* Ajusta o tamanho em telas menores */
-        height: 28px; /* Ajuste adicional para telas pequenas */
+        min-width: 28px;
+        height: 28px;
     }
 `;
 
 export const TextContainer = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 4px;
     margin-left: 10px;
 
     @media (max-width: 768px) {
-        margin-left: 8px; /* Reduz o espaçamento em telas menores */
+        margin-left: 8px;
     }
 `;
 
@@ -59,11 +64,11 @@ export const Title = styled.span`
     color: #0f0f0f;
 
     @media (max-width: 768px) {
-        font-size: 14px; /* Ajusta o tamanho da fonte em telas menores */
+        font-size: 14px;
     }
 
     @media (max-width: 480px) {
-        font-size: 12px; /* Ajuste adicional para telas pequenas */
+        font-size: 12px;
     }
 `;
 
@@ -72,10 +77,10 @@ export const TextCard = styled.span`
     font-size: 14px;
 
     @media (max-width: 768px) {
-        font-size: 12px; /* Ajusta o tamanho da fonte em telas menores */
+        font-size: 12px;
     }
 
     @media (max-width: 480px) {
-        font-size: 10px; /* Ajuste adicional para telas pequenas */
+        font-size: 10px;
     }
 `;

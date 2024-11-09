@@ -1,13 +1,29 @@
 import { Container, ChannelImage, ImageBanner, TextCard, TextContainer, Title, TitleContainer } from "./styles";
 
-function VideoComponent({ video }: any) {
+interface VideoComponentProps {
+    video: Video;
+    openMenu: boolean;
+}
+
+interface Video {
+    image: string;
+    title: string;
+    description: string,
+    channel: string;
+    views: string;
+    data: string;
+}
+
+interface IProps {
+}
+
+
+function VideoComponent({ video, openMenu }: VideoComponentProps) {
     return (
-        <Container>
-            <ImageBanner src="https://cdns-images.dzcdn.net/images/cover/64e54e307bd5e2bdb27ffeb662fd910d/1900x1900-000000-80-0-0.jpg" />
-            <TitleContainer>
-                <ChannelImage>
-                    FB
-                </ChannelImage>
+        <Container openMenu={false}>
+            <ImageBanner src={video.image} openMenu={openMenu} />
+            <TitleContainer openMenu={openMenu}>
+                <ChannelImage>FB</ChannelImage>
                 <TextContainer>
                     <Title>{video.title}</Title>
                     <TextCard>{video.description}</TextCard>
@@ -16,7 +32,8 @@ function VideoComponent({ video }: any) {
                 </TextContainer>
             </TitleContainer>
         </Container>
-    )
+    );
 }
+
 
 export default VideoComponent;

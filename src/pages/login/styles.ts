@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const Container = styled.div`
     width: 100vw;
     height: 100vh;
@@ -7,6 +8,9 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
 `;
 
 export const LoginBox = styled.div`
@@ -28,23 +32,21 @@ export const Logo = styled.img`
 
 export const Title = styled.span`
     font-size: 36px;
-    font-weight: 400;
     color: #202124;
     margin-bottom: 16px;
 `;
 
 export const SubTitle = styled.span`
     font-size: 16px;
-    font-weight: 400;
     color: #202124;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 `;
 
 export const Input = styled.input`
     width: 100%;
     max-width: 400px;
     padding: 12px 16px;
-    margin-bottom: 16px;
+    margin: 8px 0;
     border: 1px solid #dadce0;
     border-radius: 4px;
     font-size: 14px;
@@ -57,16 +59,23 @@ export const Input = styled.input`
     }
 `;
 
-export const CheckboxContainer = styled.div`
+export const ForgotPassword = styled.button`
     width: 100%;
     max-width: 400px;
-    margin-bottom: 10px;  
-`;
+    margin-bottom: 8px;
+    display: flex;
 
-export const CheckboxLabel = styled.label`
-    margin-left: 8px;
+    color: #1a73e8;
+    text-decoration: none;
     font-size: 14px;
-    color: #202124;
+
+    background-color: #f9f9f9;
+    border: none;
+    cursor: pointer;
+    
+    &:hover {
+        color: #155ab6; /* Altera a cor do texto quando o link é hover */
+    }
 `;
 
 export const SubmitButtonContainer = styled.div`
@@ -78,20 +87,50 @@ export const SubmitButtonContainer = styled.div`
     justify-content: space-between;
 `;
 
-export const Button = styled.button<{ primary?: boolean }>`
+export const LoginButton = styled.button<{ primary?: boolean }>`
     width: 100px;
     max-width: 400px;
     padding: 12px;
-    background-color: ${({ primary }) => (primary ? '#1a73e8' : 'transparent')};  // Transforma em transparente se não for primário
+
+    border: none;
+    border-radius: 20px;
+    
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    
+    background-color: #4889f4;
+    color: #fafafa; // Cor do texto no hover
+    transition: background-color 0.3s;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: #a8c7fa; // Muda a cor do hover
+        color: #3961a2;
+    }
+
+    &:disabled {
+        background-color: #2a4877;
+        cursor: not-allowed;
+    }
+`;
+
+export const CreateAccountButton = styled.button<{ primary?: boolean }>`
+    width: 100px;
+    max-width: 400px;
+    padding: 12px;
+
+    background-color:#f9f9f9;
     border: none;
     border-radius: 4px;
-    color: ${({ primary }) => (primary ? 'white' : '#1a73e8')}; // Cor branca se primário, azul se não
+    color: #1a73e8;
     font-size: 14px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s;
 
     &:hover {
-        background-color: ${({ primary }) => (primary ? '#155ab6' : 'transparent')}; // Muda a cor do hover
         color: #155ab6; // Cor do texto no hover
     }
 
@@ -103,6 +142,6 @@ export const Button = styled.button<{ primary?: boolean }>`
 
 export const ErrorMessage = styled.div`
     color: red;
-    margin-top: 12px;
+    margin: 8px 0;
     font-size: 12px;
 `;

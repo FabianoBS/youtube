@@ -13,9 +13,9 @@ function App() {
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <UserStorage>
-      <BrowserRouter>
-      <Routes>
+    <BrowserRouter>
+      <UserStorage>  
+        <Routes>
           {/* Página de login sem header e menu */}
           <Route path="/login" element={<Login />} />
           {/* Páginas com header e menu */}
@@ -39,12 +39,12 @@ function App() {
             }
           />
         </Routes>
-      </BrowserRouter>
-    </UserStorage>
+      </UserStorage>
+    </BrowserRouter>
   );
 }
 
-// fazer a tela de login;
+// fazer a tela de login;  ---Check!
 // dropdown menu user;
 // criar tela e integração para cadastro de usuário;
 // criar tela e integração para cadastro de vídeo;
