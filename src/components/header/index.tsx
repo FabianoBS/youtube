@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { UserContext } from "../../context/userContext";
 import {
     Container,
@@ -14,7 +14,12 @@ import {
     LoginButtons,
     LogoHeader,
     MicButtonContainer,
-    LoginButton
+    LoginButton,
+    UserPhoto,
+    UserPhotoBox,
+    DropdownUserMenu,
+    DropdownVideoMenu,
+    DropdownList
 } from "./styles";
 import HamburguerIcon from "../../assets/header/hamburger.png";
 import Logo from '../../assets/header/YouTube-Logo.png';
@@ -22,13 +27,47 @@ import SearchIcon from '../../assets/header/search.png';
 import MicIcon from '../../assets/header/microfone-gravador.png';
 import VideoIcon from '../../assets/header/video.png';
 import NotificationIcon from '../../assets/header/sino.png';
-import UserPhoto from '../../assets/header/user-photo.png';
 import LoginIcon from '../../assets/header/login.png';
 
 
 function Header({ openMenu, setOpenMenu }: { openMenu: boolean, setOpenMenu: React.Dispatch<React.SetStateAction<boolean>> }) {
-    const { login, logOut } = useContext(UserContext);
+    const { login, logOut, user } = useContext(UserContext);
     const navigate = useNavigate();
+    const firstLetter = user.nome ? user.nome.charAt(0).toUpperCase() : '';
+
+    const [showDropdownUser, setShowDropdownUser] = useState(false);
+    const [showDropdownVideo, setShowDropdownVideo] = useState(false);
+
+    const dropdownUserRef = useRef(null);
+    const dropdownVideoRef = useRef(null);
+    
+    const handleClickOutside = (event: MouseEvent) => {
+        const target = event.target as HTMLElement;
+
+        if (
+            showDropdownUser && !target.closest('.dropdown-user-menu') &&
+            showDropdownVideo && !target.closest('.dropdown-video-menu')
+            ) {
+                setShowDropdownUser(false);
+                setShowDropdownVideo(false);
+            }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    const toggleDropdownUser = () => {
+        setShowDropdownUser(prev => !prev);
+    };
+    
+    const toggleDropdownVideo = () => {
+        setShowDropdownVideo(prev => !prev);
+    };
 
     return (
         <Container>
@@ -69,9 +108,18 @@ function Header({ openMenu, setOpenMenu }: { openMenu: boolean, setOpenMenu: Rea
             </SearchContainer>
 
             <LoginButtons>
-                <ButtonContainer margin='0 10px 0 0'>
+                <ButtonContainer margin='0 10px 0 0' onClick={toggleDropdownVideo}>
                     <ButtonContent>
                         <ButtonIcon alt="" src={VideoIcon} />
+                        {showDropdownVideo && (
+                                <DropdownVideoMenu ref={dropdownVideoRef} className="dropdown-video-menu">
+                                    <DropdownList>
+                                        <li onClick={() => navigate('/profile')}>Perfil</li>
+                                        <li onClick={() => navigate('/settings')}>Configurações</li>
+                                        <li onClick={() => { logOut(); setShowDropdownVideo(false); }}>Sair</li>
+                                    </DropdownList>
+                                </DropdownVideoMenu>
+                            )}
                     </ButtonContent>
                 </ButtonContainer>
                 <ButtonContainer margin='0 10px 0 0'>
@@ -81,23 +129,29 @@ function Header({ openMenu, setOpenMenu }: { openMenu: boolean, setOpenMenu: Rea
                 </ButtonContainer>
 
                 {login ? 
-                    <ButtonContainer margin='0 0 0 10px'>
+                    <ButtonContainer margin='0 20px 0 0' onClick={toggleDropdownUser}>
                         <ButtonContent>
-                            <img
-                                id="user-photo"
-                                src={UserPhoto}
-                                alt=''
-                            />
+                            <UserPhotoBox >
+                                {firstLetter ? (
+                                    <UserPhoto>{firstLetter}</UserPhoto>
+                                ) : (
+                                    <div>?</div>
+                                )}
+                            </UserPhotoBox>
+                            {showDropdownUser && (
+                                <DropdownUserMenu ref={dropdownUserRef}  className="dropdown-user-menu">
+                                    <DropdownList className="setShowDropdownUser">
+                                        <li onClick={() => navigate('/profile')}>Perfil</li>
+                                        <li onClick={() => navigate('/settings')}>Configurações</li>
+                                        <li onClick={() => { logOut(); setShowDropdownUser(false); }}>Sair</li>
+                                    </DropdownList>
+                                </DropdownUserMenu>
+                            )}
                         </ButtonContent>
-                        <span onClick={() => logOut()}>Sair</span>
                     </ButtonContainer>
                     :   
                     <LoginButton onClick={() => navigate('/login')}>
-                        <img
-                            id="login-img"
-                            src={LoginIcon}
-                            alt=''
-                        />
+                        <img id="login-img" src={LoginIcon} alt='' />
                         Fazer login
                     </LoginButton>
                 }

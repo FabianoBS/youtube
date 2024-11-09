@@ -6,17 +6,18 @@ export const UserContext = createContext({} as any);
 
 export const UserStorage = ({ children }: any) => {
     const [login, setLogin] = useState(false);
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState<{ name?: string }>({});
     const [token, setToken] = useState(localStorage.getItem('token') as string);
     const navigate = useNavigate();
 
     const getUser = (token: string) => {
-        api.get('/user/get-user', {headers:{Authorization: token}}).then(({ data }) => {
-            setUser(data.user);
-            setLogin(true);
-        }).catch((error) => {
-            console.log('Usuário não autenticado', error)
-        })
+        api.get('/user/get-user', {headers:{Authorization: token}})
+            .then(({ data }) => {
+                setUser(data.user);
+                setLogin(true);
+            }).catch((error) => {
+                console.log('Usuário não autenticado', error)
+            })
     }
 
     useEffect(() => {

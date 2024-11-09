@@ -18,30 +18,8 @@ export const Container = styled.div<ContainerProps>`
     align-items: center;
     justify-content: center;
     padding: 20px 46px;
-    top: 0;
     background-color: #fff;
-
-    &::before {
-        content: "";
-        position: absolute;
-        left: 40px;
-        top: 0;
-        width: 90px;
-        height: 100%;
-        background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.6) 66%);
-        pointer-events: none;
-    }
-
-    &::after {
-        content: "";
-        position: absolute;
-        right: 40px;
-        top: 0;
-        width: 150px;
-        height: 100%;
-        background: linear-gradient(to left, #fff, transparent);
-        pointer-events: none;
-    }
+    z-index: 1;
 `;
 
 export const FilterContainer = styled.div`
@@ -58,6 +36,8 @@ export const CategoryContainer = styled.div`
     overflow-y: hidden;
     flex: 1;
     white-space: nowrap;
+    /* position: relative;
+    z-index: 1; */
     
     &::-webkit-scrollbar {
         display: none;
@@ -74,14 +54,15 @@ export const CategoryContent = styled.div`
     line-height: 32px;
     display: flex;
     align-items: center;
+    position: relative;
+    z-index: 1;
 `;
 
 export const BackButton = styled.button<ButtonProps>`
     width: 40px;
     height: 40px;
 
-    position: absolute;
-    z-index: 999999;
+    /* position: absolute; */
     left: 6px;
     
     display: ${({ isVisible }) => (isVisible ? 'flex' : 'none')};
@@ -91,10 +72,11 @@ export const BackButton = styled.button<ButtonProps>`
     border: none;
     border-radius: 50%;
 
-    background-color: transparent;;
+    background-color: transparent;
     font-size: 24px;
     cursor: pointer;
     transition: 0.3s;
+    z-index: 2; /* Garantindo que o botão tenha um z-index maior do que o filtro */
 
     &:hover {
         background-color: #d3d3d3;
@@ -105,9 +87,8 @@ export const NextButton = styled.button<ButtonProps>`
     width: 40px;
     height: 40px;
 
-    position: absolute;
+    /* position: absolute; */
     right: 6px;
-    z-index: 999999;
     
     display: ${({ isVisible }) => (isVisible ? 'none' : 'flex')};
     align-items: center;
@@ -120,6 +101,7 @@ export const NextButton = styled.button<ButtonProps>`
     font-size: 24px;
     cursor: pointer;
     transition: 0.3s;
+    z-index: 2; /* Garantindo que o botão tenha um z-index maior do que o filtro */
 
     &:hover {
         background-color: #d3d3d3;
@@ -137,3 +119,4 @@ export const ImgNextButton = styled.img`
     height: 24px;
     object-fit: cover;
 `;
+

@@ -1,6 +1,6 @@
 import VideoComponent from "../../components/videoComponent";
 import FilterComponent from "../../components/filterComponent/index";
-import { Container } from "./styles";
+import { Container, HomePage } from "./styles";
 
 interface IProps {
     openMenu: boolean;
@@ -118,14 +118,14 @@ function Home({ openMenu }: IProps) {
     console.log(openMenu);
 
     return (
-        <div>
+        <HomePage>
             <FilterComponent openMenu={false} />
             <Container openMenu={openMenu}>
                 {videos.map((video, index) => (
                 <VideoComponent key={index} video={video} openMenu={openMenu} />
                 ))}
             </Container>
-        </div>
+        </HomePage>
     )
 }
 export default Home;

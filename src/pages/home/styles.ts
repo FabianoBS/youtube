@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const HomePage = styled.div`
+    
+`;
+
 export const Container = styled.div<{ openMenu: boolean }>`
     width: 100%;
     max-width: 1600px;

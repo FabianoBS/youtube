@@ -10,7 +10,6 @@ const Login = () => {
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = () => {
-    // Validando se os campos foram preenchidos
     if (email === "" || password === "") {
       setError("Por favor, preencha todos os campos.");
     } else {
