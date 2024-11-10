@@ -2,12 +2,14 @@ import { Container, LoginBox, Logo, Title, SubTitle, Input, ForgotPassword, Subm
 import { useState, useContext } from "react";
 import { UserContext } from "../../context/userContext"; // Importando o contexto
 import GLogo from "../../assets/login/g-logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { handleLogin } = useContext(UserContext); // Obtendo a função handleLogin do contexto
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     if (email === "" || password === "") {
@@ -52,7 +54,7 @@ const Login = () => {
 
         <SubmitButtonContainer>
           <LoginButton primary onClick={handleSubmit}>Entrar</LoginButton>
-          <CreateAccountButton>Criar conta</CreateAccountButton>
+          <CreateAccountButton onClick={() => navigate("/register")}>Criar conta</CreateAccountButton>
         </SubmitButtonContainer>
       </LoginBox>
     </Container>

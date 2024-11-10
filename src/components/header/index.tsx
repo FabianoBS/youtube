@@ -45,7 +45,6 @@ function Header({ openMenu, setOpenMenu }: { openMenu: boolean, setOpenMenu: Rea
         const handleClickOutside = (event: MouseEvent) => {
           const target = event.target as HTMLElement;
       
-          // Verifique se o clique não foi dentro de nenhum dos dropdowns
           if (
             (showDropdownUser && !dropdownUserRef.current?.contains(target)) ||
             (showDropdownVideo && !dropdownVideoRef.current?.contains(target))
@@ -61,7 +60,6 @@ function Header({ openMenu, setOpenMenu }: { openMenu: boolean, setOpenMenu: Rea
           document.removeEventListener('mousedown', handleClickOutside);
         };
       
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [showDropdownUser, showDropdownVideo]);
 
     const toggleDropdownUser = () => {

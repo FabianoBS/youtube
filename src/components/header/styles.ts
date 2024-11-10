@@ -275,6 +275,7 @@ export const UserPhotoBox = styled.div`
 
 export const UserPhoto = styled(LoginButtons)`
     border-radius: 0;
+    font-size: 20px;
     
     @media (max-width: 768px) {
         width: 18px;

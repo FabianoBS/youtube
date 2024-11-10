@@ -8,6 +8,7 @@ import Shorts from "./pages/shorts";
 import Subscriptions from "./pages/subscriptions";
 import You from "./pages/you";
 import Login from "./pages/login";
+import Register from "./pages/register";
 
 function App() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           {/* Página de login sem header e menu */}
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           {/* Páginas com header e menu */}
           <Route
             path="*"
@@ -46,7 +48,7 @@ function App() {
 
 // fazer a tela de login;  ---Check!
 // dropdown menu user; ---Check!
-// criar tela e integração para cadastro de usuário;
+// criar tela e integração para cadastro de usuário; ---Check!
 // criar tela e integração para cadastro de vídeo;
 // implementação de pesquisa
 
