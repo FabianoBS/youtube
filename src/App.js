@@ -45,7 +45,7 @@ function App() {
 }
 
 // fazer a tela de login;  ---Check!
-// dropdown menu user;
+// dropdown menu user; ---Check!
 // criar tela e integração para cadastro de usuário;
 // criar tela e integração para cadastro de vídeo;
 // implementação de pesquisa

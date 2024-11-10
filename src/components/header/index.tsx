@@ -38,35 +38,38 @@ function Header({ openMenu, setOpenMenu }: { openMenu: boolean, setOpenMenu: Rea
     const [showDropdownUser, setShowDropdownUser] = useState(false);
     const [showDropdownVideo, setShowDropdownVideo] = useState(false);
 
-    const dropdownUserRef = useRef(null);
-    const dropdownVideoRef = useRef(null);
+    const dropdownUserRef = useRef<HTMLDivElement>(null); 
+    const dropdownVideoRef = useRef<HTMLDivElement>(null); 
     
-    const handleClickOutside = (event: MouseEvent) => {
-        const target = event.target as HTMLElement;
-
-        if (
-            showDropdownUser && !target.closest('.dropdown-user-menu') &&
-            showDropdownVideo && !target.closest('.dropdown-video-menu')
-            ) {
-                setShowDropdownUser(false);
-                setShowDropdownVideo(false);
-            }
-    };
-
     useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
+        const handleClickOutside = (event: MouseEvent) => {
+          const target = event.target as HTMLElement;
+      
+          // Verifique se o clique não foi dentro de nenhum dos dropdowns
+          if (
+            (showDropdownUser && !dropdownUserRef.current?.contains(target)) ||
+            (showDropdownVideo && !dropdownVideoRef.current?.contains(target))
+          ) {
+            setShowDropdownUser(false);
+            setShowDropdownVideo(false);
+          }
+        };
+      
+        document.addEventListener('mousedown', handleClickOutside);
 
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
+          document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, []);
+      
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [showDropdownUser, showDropdownVideo]);
 
     const toggleDropdownUser = () => {
-        setShowDropdownUser(prev => !prev);
+        setShowDropdownUser((prev) => !prev);
     };
     
     const toggleDropdownVideo = () => {
-        setShowDropdownVideo(prev => !prev);
+        setShowDropdownVideo((prev) => !prev);
     };
 
     return (
@@ -112,14 +115,14 @@ function Header({ openMenu, setOpenMenu }: { openMenu: boolean, setOpenMenu: Rea
                     <ButtonContent>
                         <ButtonIcon alt="" src={VideoIcon} />
                         {showDropdownVideo && (
-                                <DropdownVideoMenu ref={dropdownVideoRef} className="dropdown-video-menu">
-                                    <DropdownList>
-                                        <li onClick={() => navigate('/profile')}>Perfil</li>
-                                        <li onClick={() => navigate('/settings')}>Configurações</li>
-                                        <li onClick={() => { logOut(); setShowDropdownVideo(false); }}>Sair</li>
-                                    </DropdownList>
-                                </DropdownVideoMenu>
-                            )}
+                        <DropdownVideoMenu ref={dropdownVideoRef} className="dropdown-video-menu">
+                            <DropdownList>
+                            <li onClick={() => navigate("/profile")}>Perfil</li>
+                            <li onClick={() => navigate("/settings")}>Configurações</li>
+                            <li onClick={() => { logOut(); setShowDropdownVideo(false); }}>Sair</li>
+                            </DropdownList>
+                        </DropdownVideoMenu>
+                        )}
                     </ButtonContent>
                 </ButtonContainer>
                 <ButtonContainer margin='0 10px 0 0'>
@@ -139,12 +142,12 @@ function Header({ openMenu, setOpenMenu }: { openMenu: boolean, setOpenMenu: Rea
                                 )}
                             </UserPhotoBox>
                             {showDropdownUser && (
-                                <DropdownUserMenu ref={dropdownUserRef}  className="dropdown-user-menu">
-                                    <DropdownList className="setShowDropdownUser">
-                                        <li onClick={() => navigate('/profile')}>Perfil</li>
-                                        <li onClick={() => navigate('/settings')}>Configurações</li>
-                                        <li onClick={() => { logOut(); setShowDropdownUser(false); }}>Sair</li>
-                                    </DropdownList>
+                                <DropdownUserMenu ref={dropdownUserRef} className="dropdown-user-menu">
+                                <DropdownList className="setShowDropdownUser">
+                                    <li onClick={() => navigate("/profile")}>Perfil</li>
+                                    <li onClick={() => navigate("/settings")}>Configurações</li>
+                                    <li onClick={() => { logOut(); setShowDropdownUser(false); }}>Sair</li>
+                                </DropdownList>
                                 </DropdownUserMenu>
                             )}
                         </ButtonContent>
