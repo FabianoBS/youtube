@@ -1,11 +1,11 @@
 import { Container, LoginBox, Logo, Title, SubTitle, Input, SubmitButtonContainer, LoginButton, CreateAccountButton, ErrorMessage } from "./styles"; // Importando os estilos
 import { useState, useContext } from "react";
-import { UserContext } from "../../context/userContext"; // Importando o contexto
+import { UserContext } from "../../contexts/userContext"; // Importando o contexto
 import GLogo from "../../assets/login/g-logo.png";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-    const { handleRegister } = useContext(UserContext); // Obtendo a função handleLogin do contexto
+    const { handleCreateUser } = useContext(UserContext); // Obtendo a função handleLogin do contexto
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,7 +17,7 @@ const Register = () => {
             setError("Por favor, preencha todos os campos.");
         } else {
             setError(null);
-            handleRegister(name, email, password);
+            handleCreateUser(name, email, password);
         }
     };
 
