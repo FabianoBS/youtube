@@ -39,13 +39,13 @@ function Home() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [categoryId])
 
-    const API_KEY = 'AIzaSyB2KxgcwINwKOlvcY33ve81XK3184WQK6I';
+    const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 
-    const url = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&chart=mostPopular&hl=pt_BR&maxResults=48&regionCode=br&videoCategoryId=${categoryId}&key=${API_KEY}`;
+    const URL = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&part=statistics&chart=mostPopular&hl=pt_BR&maxResults=48&regionCode=br&videoCategoryId=${categoryId}&key=${API_KEY}`;
     
     async function load() {
         try {
-            const resposta = await axios.get(url);
+            const resposta = await axios.get(URL);
             setVideos(resposta.data.items)
         } catch (erro) {
             console.log(erro);

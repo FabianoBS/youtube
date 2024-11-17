@@ -44,15 +44,17 @@ import BackButtonIcon from '../../assets/header/back-button.png';
 
 
 const Header: React.FC = () => {
+    const { login, logOut, user, openDropDownMenu, setOpenDropDownMenu } = useContext(UserContext);
     const { openMenu, setOpenMenu } = useAppContext();
+    const { setSearch } = useSearchContext();
+    const { setCategoryId } = useCategoryContext();
+    
     const [clearButton, setClearButton] = useState(false);
     const [openSearch, setOpenSearch] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+
     const inputRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
-    const { login, logOut, user, openDropDownMenu, setOpenDropDownMenu } = useContext(UserContext);
-    const { setSearch } = useSearchContext();
-    const [inputValue, setInputValue] = useState('');
-    const { setCategoryId } = useCategoryContext()
     
     const Search = () => {
         setOpenSearch(true);
@@ -175,7 +177,7 @@ const Header: React.FC = () => {
                     </ButtonContainer>
 
                     <ButtonContainer margin='0 0 0 10px' onClick={handleDropDownMenu} >
-                    {user && user.nome ? user.nome.charAt(0).toUpperCase() : ''}
+                    {user && user.nome ? user.nome.charAt(0).toUpperCase() : '?'}
                     </ButtonContainer>
 
                     <DropDownMenu openDropDownMenu={openDropDownMenu}>
@@ -187,7 +189,7 @@ const Header: React.FC = () => {
                             >
                                 {user && user.nome ? user.nome.charAt(0).toUpperCase() : ''}
                             </ButtonContainer>
-                            <UserName>{user && user.nome ? user.nome : ''}</UserName>
+                            <UserName>{user && user.nome ? user.nome : 'teste'}</UserName>
                         </UserInfoContainer>
 
                         <DropDownMenuContent onClick={goOut}>

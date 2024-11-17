@@ -5,29 +5,30 @@ import { useNavigate } from "react-router-dom";
 export const UserContext = createContext({} as any);
 
 export const UserStorage = ({ children }: any) => {
+
   const [login, setLogin] = useState(false);
   const [user, setUser] = useState<{ nome?: string; email?: string; id?: string }>({});
   const [userVideos, setUserVideos] = useState([]);
-  const [token, setToken] = useState(localStorage.getItem('token') as string);
   const [openDropDownMenu, setOpenDropDownMenu] = useState(false);
+
+  const [token, setToken] = useState(localStorage.getItem('token') as string);
   const navigate = useNavigate();
 
   const getVideos = async (token: string, user_id: string) => {
     try {
-      const response = await api.get(`/videos/get-videos/${user_id}`, { headers: { authorization: token } });
-      if (response.status === 200) {
+      const response = await api.post('videos/get-videos', { user_id }, { headers: { authorization: token } });
+      if (response.status === 200 || response.status === 201) {
         setUserVideos(response.data.videos);
-        console.log(response.data.videos);
+        console.log("UserVideos:", response.data.videos);
       }
-    } catch (error) {
-      console.log('erro ao buscar vídeos', error);
+    } catch (error: any) {
+      console.log('erro ao buscar vídeos', error.response ? error.response.data : error.message);
     }
   };
 
   const createVideos = async (token: string, user_id: string, title: string, description: string, thumbnail: string, publishedAt: Date) => {
     try {
-      const response = await api.post(`/videos/create-video/${user_id}`, { title, description, thumbnail, publishedAt },
-        { headers: { authorization: token } });
+      const response = await api.post('/videos/create-video', { user_id, title, description, thumbnail, publishedAt }, { headers: { authorization: token }});
       if (response.status === 200) {
         alert('Video enviado com sucesso!');
         getUser(token);
@@ -40,16 +41,19 @@ export const UserStorage = ({ children }: any) => {
   const getUser = async (token: string) => {
     try {
         const response = await api.get('user/get-user', { headers: { authorization: token } });
-        if (response.status === 200) {
-            console.log("Resposta da API no getUser:", response.data.user);
-            setUser(response.data.user);
-            getVideos(token, response.data.user.id);
+        const userData = response.data.user;
+        const userId = userData.id;
+        if (response.status === 200 || response.status === 201) {
+          console.log(userData)
+            setUser(userData);
+            getVideos(token, userId);
+            console.log(getVideos)
         }
     } catch (error) {
         console.log('Usuário não autenticado', error);
         setLogin(false);
         setToken('');
-        setUser({}); // Resetando o estado de user em caso de falha
+        setUser({});
         localStorage.removeItem('token');
     }
 };

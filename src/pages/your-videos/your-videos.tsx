@@ -5,6 +5,7 @@ import Menu from "../../components/menu/menu";
 import { useContext, useState, useRef } from "react";
 import { UserContext } from "../../contexts/userContext";
 import YourVideosCards from "../../components/yourVideosCards/your-videos-cards";
+import moment from "moment";
 // import { InputEmpty, MessageContainer } from "../sign-up/sign-up-style";
 
 function YourVideos() {
@@ -21,7 +22,7 @@ function YourVideos() {
 
   const { user, userVideos, createVideos, token } = useContext(UserContext)
 
-  const USER_ID = user.id
+  const USER_ID = user.id;
 
   const [thumbnail, setThumbnail] = useState('')
   const [title, setTitle] = useState('')
@@ -102,35 +103,38 @@ function YourVideos() {
   }
 
   function getTimeDifference(publishedAt: string): string {
-    const diff = Date.now() - Date.parse(publishedAt);
-    const minute = 60 * 1000;
-    const hour = 60 * minute;
-    const day = 24 * hour;
-    const week = 7 * day;
-    const month = 30 * day;
-    const year = 12 * month;
-
-    if (diff < minute * 5) {
-      return "Agora";
-    } else if (diff < hour) {
-      const minutes = Math.floor(diff / minute);
-      return `Há ${minutes} ${minutes < 2 ? "minuto" : "minutos"}`;
-    } else if (diff < day) {
-      const hours = Math.floor(diff / hour);
-      return `Há ${hours} ${hours < 2 ? "hora" : "horas"}`;
-    } else if (diff < week) {
-      const days = Math.floor(diff / day);
-      return `Há ${days} ${days < 2 ? "dia" : "dias"}`;
-    } else if (diff < month) {
-      const weeks = Math.floor(diff / week);
-      return `Há ${weeks} ${weeks < 2 ? "semana" : "semanas"}`;
-    } else if (diff < year) {
-      const months = Math.floor(diff / month);
-      return `Há ${months} ${months < 2 ? "mês" : "meses"}`;
-    } else {
-      const years = Math.floor(diff / year);
-      return `Há ${years} ${years < 2 ? "ano" : "anos"}`;
-    }
+    const now = moment();
+        const publishedTime = moment(publishedAt);
+        const diffDays = now.diff(publishedTime, 'days');
+    
+        if (diffDays <= 0) {
+            return 'hoje';
+        } else if (diffDays === 1) {
+            return 'há 1 dia';
+        } else if (diffDays <= 7) {
+            return `há ${diffDays} dias`;
+        } else if (diffDays <= 30) {
+            const diffWeeks = Math.floor(diffDays / 7);
+            if (diffWeeks === 1) {
+                return 'há 1 semana';
+            } else {
+                return `há ${diffWeeks} semanas`;
+            }
+        } else if (diffDays <= 365) {
+            const diffMonths = Math.floor(diffDays / 30);
+            if (diffMonths === 1) {
+                return 'há 1 mês';
+            } else {
+                return `há ${diffMonths} meses`;
+            }
+        }  else {
+            const diffYears = Math.floor(diffDays / 365);
+            if (diffYears === 1) {
+                return 'há 1 ano';
+            } else {
+                return `há ${diffYears} anos`;
+            }
+        }
   }
 
   const [hideModal, setHideModal] = useState(true)
